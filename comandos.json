@@ -1,0 +1,40 @@
+{
+  "reniec": [
+    "*🔎 RENIEC [1/2]*\\n\\n`/dni 12345678` - Consulta por DNI\\n`/cedula 12345678` - Datos de cedula\\n`/edad 12345678` - Edad de persona\\n`/masdatos 12345678` - Más datos por DNI\\n`/nombre 12345678` - Nombre completo\\n`/fallecido 12345678` - Verificar fallecimiento",
+    "*🔎 RENIEC [2/2]*\\n\\n`/direccion 12345678` - Dirección por DNI\\n`/dni2 12345678` - Consulta alternativa\\n`/dni3 12345678` - Consulta rápida\\n`/dni4 12345678` - Datos básicos"
+  ],
+  "delitos": [
+    "*🚨 DELITOS [1/1]*\\n\\n`/delitos 12345678` - Antecedentes policiales\\n`/delitos2 12345678` - Alternativo"
+  ],
+  "generador": [
+    "*🧰 GENERADOR [1/1]*\\n\\n`/gen` - Generar tarjeta aleatoria\\n`/genbin 123456` - Generar tarjeta con BIN"
+  ],
+  "telefonia": [
+    "*📞 TELEFONÍA [1/2]*\\n\\n`/rpc 912345678` - Verifica si es RPC\\n`/rpm 912345678` - Verifica si es RPM\\n`/movistar 912345678` - Verifica si es Movistar\\n`/claro 912345678` - Verifica si es Claro",
+    "*📞 TELEFONÍA [2/2]*\\n\\n`/entel 912345678` - Verifica si es Entel\\n`/bitel 912345678` - Verifica si es Bitel\\n`/operador 912345678` - Consultar operador"
+  ],
+  "sunarp": [
+    "*🗂️ SUNARP [1/1]*\\n\\n`/placa ABC123` - Datos del vehículo\\n`/propietario ABC123` - Ver propietario"
+  ],
+  "familiares": [
+    "*👨‍👩‍👧‍👦 FAMILIARES [1/1]*\\n\\n`/padres 12345678` - Consultar padres\\n`/hijos 12345678` - Consultar hijos"
+  ],
+  "spam": [
+    "*📨 SPAM [1/1]*\\n\\n`/sms 912345678` - Enviar SMS masivo\\n`/spamllamada 912345678` - Llamadas spam"
+  ],
+  "seeker": [
+    "*🌐 SEEKER [1/1]*\\n\\n`/ip 8.8.8.8` - Buscar IP\\n`/correo example@gmail.com` - Buscar info de correo"
+  ],
+  "baucher": [
+    "*💳 BAUCHER [1/1]*\\n\\n`/baucher 12345678` - Ver pagos o recibos\\n`/pago 12345678` - Verificar pago"
+  ],
+  "extras": [
+    "*🔧 EXTRAS [1/1]*\\n\\n`/sticker` - Convertir imagen en sticker\\n`/qr texto` - Generar QR"
+  ],
+  "gratis": [
+    "*🎁 GRATIS [1/1]*\\n\\n`/freedni 12345678` - Consulta gratuita de DNI\\n`/freeplaca ABC123` - Consulta gratuita de placa"
+  ],
+  "vip": [
+    "*🌟 VIP [1/1]*\\n\\n`/vipdni 12345678` - Consulta avanzada DNI\\n`/vipplaca ABC123` - Consulta avanzada de placa"
+  ]
+}
