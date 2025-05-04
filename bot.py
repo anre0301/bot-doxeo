@@ -275,7 +275,7 @@ FECHA ➾ `{fecha_actual}`
     bot.send_message(ID_GRUPO_LOGS, texto, parse_mode="Markdown")
 
         
-@bot.message_handler(commands=['uncred'])
+bot.message_handler(commands=['uncred'])
 def cmd_uncred(message):
     if not is_admin_or_seller(message.from_user.id):
         bot.reply_to(message, "🚫 No tienes permiso para usar este comando.")
@@ -292,20 +292,17 @@ def cmd_uncred(message):
     # Cargar los datos de créditos existentes
     creditos_data = cargar_archivo('creditos.json')
 
-    # Si el usuario no tiene créditos registrados, inicializarlos
     if user_id not in creditos_data:
         creditos_data[user_id] = 0
 
-    # Validar que no queden créditos negativos
     if creditos_data[user_id] < creditos_a_restar:
         bot.reply_to(message, f"🚫 El usuario {user_id} no tiene suficientes créditos para restar {creditos_a_restar}. Créditos actuales: {creditos_data[user_id]}")
         return
 
-    # Restar créditos
     creditos_data[user_id] -= creditos_a_restar
     total_creditos = creditos_data[user_id]
 
-    # Determinar el nuevo plan según los créditos restantes
+    # Determinar nuevo plan
     if total_creditos >= 1201:
         plan = "PREMIUM"
     elif total_creditos >= 321:
@@ -315,24 +312,19 @@ def cmd_uncred(message):
     else:
         plan = "FREE"
 
-    # Guardar créditos actualizados
     guardar_archivo('creditos.json', creditos_data)
 
-    # Actualizar el plan en los datos del usuario
     usuarios = cargar_usuarios()
     if user_id in usuarios:
         usuarios[user_id]["plan"] = plan
         guardar_usuarios(usuarios)
 
-    # Info para el mensaje
+    # Info de registro
     nombre_vendedor = message.from_user.first_name
     id_vendedor = message.from_user.id
     fecha_actual = datetime.now().strftime("%d/%m/%Y %H:%M")
 
-    # Mensaje formateado
-    bot.reply_to(message, f"""
-    bot.send_message(ID_GRUPO_LOGS, texto, parse_mode="Markdown")
-
+    texto = f"""
 [#AXC_DATA]  
 
 VENDEDOR ➾ [👤 {nombre_vendedor}](tg://user?id={id_vendedor}) - `{id_vendedor}`  
@@ -346,15 +338,15 @@ FECHA ➾ `{fecha_actual}`
     # Enviar al vendedor
     bot.reply_to(message, texto, parse_mode="Markdown")
 
-    # Enviar al grupo (-1002645920112)
-    ID_GRUPO_LOGS = -1002645920112  # Reemplaza con el ID de tu grupo
+    # Enviar al grupo de logs
+    ID_GRUPO_LOGS = -1002645920112
     bot.send_message(ID_GRUPO_LOGS, texto, parse_mode="Markdown")
 
 
         
 @bot.message_handler(commands=['sub'])
 def cmd_sub(message):
-    if not is_admin_or_seller(message.from_user.id):  # Verificar si es admin o vendedor
+    if not is_admin_or_seller(message.from_user.id):
         bot.reply_to(message, "🚫 No tienes permiso para usar este comando.")
         return
 
@@ -369,10 +361,10 @@ def cmd_sub(message):
     # Cargar los datos de días restantes
     dias_restantes_data = cargar_archivo('dias_restantes.json')
 
-    # Asignar directamente los días, reemplazando el valor anterior
+    # Asignar directamente los días
     dias_restantes_data[user_id] = dias_a_asignar
 
-    # Determinar el plan del usuario según los días asignados
+    # Determinar plan según los días
     if dias_restantes_data[user_id] >= 1201:
         plan = "PREMIUM"
     elif dias_restantes_data[user_id] >= 321:
@@ -382,24 +374,22 @@ def cmd_sub(message):
     else:
         plan = "FREE"
 
-    # Guardar los nuevos días asignados y el plan actualizado
+    # Guardar datos
     guardar_archivo('dias_restantes.json', dias_restantes_data)
 
-    # Actualizar el plan en el archivo de usuarios
+    # Actualizar plan en archivo de usuarios
     usuarios = cargar_usuarios()
     if user_id in usuarios:
         usuarios[user_id]["plan"] = plan
         guardar_usuarios(usuarios)
 
-    # Datos para el mensaje
+    # Datos del mensaje
     nombre_vendedor = message.from_user.first_name
     id_vendedor = message.from_user.id
     total_dias = dias_restantes_data[user_id]
     fecha_actual = datetime.now().strftime("%d/%m/%Y %H:%M")
 
-    # Mensaje detallado
-    bot.reply_to(message, f"""
-    bot.send_message(ID_GRUPO_LOGS, texto, parse_mode="Markdown")
+    texto = f"""
 [#AXC_DATA]  
 
 VENDEDOR ➾ [👤 {nombre_vendedor}](tg://user?id={id_vendedor}) - `{id_vendedor}`  
@@ -413,13 +403,13 @@ FECHA ➾ `{fecha_actual}`
     # Enviar al vendedor
     bot.reply_to(message, texto, parse_mode="Markdown")
 
-    # Enviar al grupo (-1002645920112)
-    ID_GRUPO_LOGS = -1002645920112  # Reemplaza con el ID de tu grupo
+    # Enviar al grupo de logs
+    ID_GRUPO_LOGS = -1002645920112
     bot.send_message(ID_GRUPO_LOGS, texto, parse_mode="Markdown")
 
 @bot.message_handler(commands=['unsub'])
 def cmd_unsub(message):
-    if not is_admin_or_seller(message.from_user.id):  # Verificar si es admin o vendedor
+    if not is_admin_or_seller(message.from_user.id):
         bot.reply_to(message, "🚫 No tienes permiso para usar este comando.")
         return
 
@@ -431,49 +421,38 @@ def cmd_unsub(message):
     user_id = args[1]
     dias_a_restar = int(args[2])
 
-    # Cargar los datos de días restantes
     dias_restantes_data = cargar_archivo('dias_restantes.json')
 
-    # Si el usuario no tiene días restantes registrados, inicializarlos
     if user_id not in dias_restantes_data:
         dias_restantes_data[user_id] = 0
 
-    # Restar los días
     dias_restantes_data[user_id] -= dias_a_restar
 
-    # Verificar si el usuario se queda sin días
     if dias_restantes_data[user_id] <= 0:
         dias_restantes_data[user_id] = 0
         plan = "FREE"
+    elif dias_restantes_data[user_id] >= 1201:
+        plan = "PREMIUM"
+    elif dias_restantes_data[user_id] >= 321:
+        plan = "STANDARD"
+    elif dias_restantes_data[user_id] >= 30:
+        plan = "BÁSICO"
     else:
-        if dias_restantes_data[user_id] >= 1201:
-            plan = "PREMIUM"
-        elif dias_restantes_data[user_id] >= 321:
-            plan = "STANDARD"
-        elif dias_restantes_data[user_id] >= 30:
-            plan = "BÁSICO"
-        else:
-            plan = "FREE"
+        plan = "FREE"
 
-    # Guardar los nuevos días restantes
     guardar_archivo('dias_restantes.json', dias_restantes_data)
 
-    # Actualizar el plan en el archivo de usuarios
     usuarios = cargar_usuarios()
     if user_id in usuarios:
         usuarios[user_id]["plan"] = plan
         guardar_usuarios(usuarios)
 
-    # Datos para el mensaje
     nombre_vendedor = message.from_user.first_name
     id_vendedor = message.from_user.id
     total_dias = dias_restantes_data[user_id]
     fecha_actual = datetime.now().strftime("%d/%m/%Y %H:%M")
 
-    # Mensaje detallado
-    bot.reply_to(message, f"""
-    bot.send_message(ID_GRUPO_LOGS, texto, parse_mode="Markdown")
-    
+    texto = f"""
 [#AXC_DATA]  
 
 VENDEDOR ➾ [👤 {nombre_vendedor}](tg://user?id={id_vendedor}) - `{id_vendedor}`  
@@ -484,13 +463,12 @@ TOTAL ➾ `{total_dias}` días restantes
 FECHA ➾ `{fecha_actual}`
 """
 
-    # Enviar al vendedor
+    # Responder al vendedor
     bot.reply_to(message, texto, parse_mode="Markdown")
 
-    # Enviar al grupo (-1002645920112)
-    ID_GRUPO_LOGS = -1002645920112  # Reemplaza con el ID de tu grupo
+    # Enviar al grupo de logs
+    ID_GRUPO_LOGS = -1002645920112
     bot.send_message(ID_GRUPO_LOGS, texto, parse_mode="Markdown")
-
         
 # /cmds
 @bot.message_handler(commands=['cmds'])
