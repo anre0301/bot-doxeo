@@ -1,7 +1,29 @@
 {
     "5504985473": {
-        "first_name": "UN USUARIO M\u00c1S",
+        "first_name": "UN USUARIO MÁS",
         "username": "m03029283",
-        "registration_date": "2025-05-02 00:06:11"
+        "registration_date": "2025-05-02 00:06:11",
+        "plan": "FREE",  // Aquí se agrega el plan
+        "role": "🆓 FREE",  // Aquí se agrega el rol
+        "credits": 0,  // Aquí se agrega la cantidad de créditos
+        "days_left": 0  // Aquí se agregan los días restantes
+    },
+    "7819787342": {
+        "first_name": "Albert | serviciosalbertpe 🇵🇪",
+        "username": "serviciosalbertpe",
+        "registration_date": "2025-05-03 15:45:43",
+        "plan": "FREE",  // Aquí se agrega el plan
+        "role": "💎 PREMIUM",  // Aquí se agrega el rol
+        "credits": 0,  // Aquí se agrega la cantidad de créditos
+        "days_left": 0  // Aquí se agregan los días restantes
+    },
+    "7690123626": {
+        "first_name": "Albert | serviciosalbert 🇵🇪",
+        "username": "serviciosalbert",
+        "registration_date": "2025-05-03 16:37:36",
+        "plan": "FREE",  // Aquí se agrega el plan
+        "role": "💎 PREMIUM",  // Aquí se agrega el rol
+        "credits": 0,  // Aquí se agrega la cantidad de créditos
+        "days_left": 0  // Aquí se agregan los días restantes
     }
 }
